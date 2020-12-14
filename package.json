@@ -1,0 +1,21 @@
+{
+  "name": "realworld-nuxtjs",
+  "version": "1.0.0",
+  "description": "- 案例名称：RealWorld\r - 一个开源的学习项目，目的就是帮助开发者快速学习新技能\r - GitHub仓库 https://github.com/gothinkster/realworld\r - 在线示例 https://demo.realworld.io/#/",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt --port 3001",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start --port 3001"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cookieparser": "^0.1.0",
+    "js-cookie": "^2.2.1",
+    "nuxt": "^2.14.11"
+  }
+}

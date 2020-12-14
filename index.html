@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo {
+            background-color: red;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .demo1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .child {
+            background-color: chartreuse;
+        }
+
+        .demo2 {
+            position: relative;
+        }
+
+        .child2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .demo3 {
+            display: flex;
+        }
+
+        .child3,
+        .child5 {
+            margin: auto;
+        }
+
+        .demo4 {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .demo5,
+        .demo6 {
+            display: grid;
+        }
+
+        .child6 {
+            justify-self: center;
+            align-self: center;
+        }
+
+        .demo7 {
+            position: relative;
+        }
+
+        .child7 {
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .demo8 {
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .child8 {
+            display: inline;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo demo1">
+        <div class="child">我是子元素1</div>
+    </div>
+    <div class="demo demo2">
+        <div class="child child2">我是子元素2</div>
+    </div>
+    <div class="demo demo3">
+        <div class="child child3">我是子元素3</div>
+    </div>
+    <div class="demo demo4">
+        <div class="child child4">我是子元素4</div>
+    </div>
+    <div class="demo demo5">
+        <div class="child child5">我是子元素5</div>
+    </div>
+    <div class="demo demo6">
+        <div class="child child6">我是子元素6</div>
+    </div>
+    <div class="demo demo7">
+        <div class="child child7">我是子元素7</div>
+    </div>
+    <div class="demo demo8">
+        <div class="child child8">我是子元素8</div>
+    </div>
+    <script>
+        const array = ['2', 'b', '9', 'a', '7', '3', '4', 'b', '6', '4'];
+        function handle(arr) {
+            return Array.from(new Set([...arr.sort((a, b) => {
+                return a > b ? 1 : a < b ? - 1 : 0;
+            })]));
+        }
+        console.log(handle(array));
+
+        let url = "https://alibaba.com?a=1&b=2&c=3#/abc/def?a=2&b=3&c=4";
+        function getParamFromURL(url, key) {
+            // 如果url中没有传参直接返回空
+            if (url.indexOf('?') === -1) {
+                return null
+            }
+            // 截取? 与 # 中间的字符串，用&分割成数组
+            let querys = url.substring(url.indexOf('?') + 1, url.indexOf('#')).split('&')
+            let result = {}
+            for (let i = 0; i < querys.length; i++) {
+                let temp = querys[i].split('=')
+                if (temp.length < 2) {
+                    result = null
+                } else {
+                    result[temp[0]] = temp[1];
+                }
+            }
+            return result[key] ? result[key] : '你传入的key不存在';
+        }
+        console.log(getParamFromURL(url, 'aa'));
+
+        let str = "Apple says: 今天我淘到了一个宝贝，你也看一下感觉很适合你 https://detail.tmall.com/item.htm?id=577359445691&spm=a1z10.10649-b-s.0.0.335e225cy94dcW，种草的话，下单吧！https://detail.taobao1.com/item.htm?id=577359445691&spm=a1z10.10649-b-s.0.0.335e225cy94dcW";
+
+        function getUrlFromWords(text) {
+            let reg = /(https?|http|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+/g;
+            let arr = text.match(reg).filter(res => 
+                res.indexOf('tmall.com') > -1 || res.indexOf('taobao.com') > -1
+            );
+            return arr;
+        }
+        // 要求：仅仅识别 tmall.com 以及 taobao.com 这两个域名下的链接
+
+        console.log(getUrlFromWords(str));
+        console.log(getUrlFromWords(str)[0] == 'https://detail.tmall.com/item.htm?id=577359445691&spm=a1z10.10649-b-s.0.0.335e225cy94dcW');
+    </script>
+</body>
+
+</html>
